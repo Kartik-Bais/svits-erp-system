@@ -1,0 +1,224 @@
+.ca-page {
+  padding-bottom: 20px;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.ca-page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ca-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.ca-page-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ca-page-title h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ca-page-title p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.ca-page-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--primary-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ca-page-body {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-main);
+}
+
+.ca-page-message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: 80%;
+}
+
+.ca-page-message-row--user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.ca-page-message-row--assistant {
+  align-self: flex-start;
+}
+
+.ca-page-message-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-500);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ca-page-bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.ca-page-bubble--assistant {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 3px;
+}
+
+.ca-page-bubble--user {
+  background: var(--primary-600);
+  color: #fff;
+  border-bottom-right-radius: 3px;
+}
+
+.ca-page-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px;
+}
+
+.ca-page-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: ca-bounce 1.2s infinite ease-in-out both;
+}
+
+.ca-page-typing span:nth-child(2) { animation-delay: -0.16s; }
+.ca-page-typing span:nth-child(3) { animation-delay:  0.08s; }
+
+@keyframes ca-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40%           { transform: scale(1); }
+}
+
+.ca-page-chips {
+  padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  scrollbar-width: none;
+}
+
+.ca-page-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.ca-page-chip {
+  padding: 8px 14px;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  color: var(--primary-700);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ca-page-chip:hover {
+  background: var(--primary-100);
+  border-color: var(--primary-200);
+}
+
+.ca-page-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+}
+
+.ca-page-footer input {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  outline: none;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  transition: border-color 0.15s;
+}
+
+.ca-page-footer input:focus {
+  border-color: var(--primary-400);
+}
+
+.ca-page-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-600);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.ca-page-send-btn:hover:not(:disabled) {
+  background: var(--primary-700);
+  transform: scale(1.05);
+}
+
+.ca-page-send-btn:disabled {
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .ca-page            { height: calc(100vh - 140px); }
+  .ca-page-message-row { max-width: 90%; }
+}

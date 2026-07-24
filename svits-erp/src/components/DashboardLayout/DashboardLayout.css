@@ -1,0 +1,9 @@
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  /* Between navbar (99) and mobile sidebar (250) */
+  z-index: 240;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}

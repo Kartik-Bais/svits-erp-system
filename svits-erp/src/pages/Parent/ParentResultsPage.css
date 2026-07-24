@@ -1,0 +1,133 @@
+.parent-res-page { padding-bottom: 32px; }
+
+.parent-res-overview {
+  background: linear-gradient(135deg, var(--neutral-50) 0%, #fff 100%);
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.parent-res-overview-content {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.parent-res-cgpa-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.parent-res-cgpa-icon {
+  width: 60px;
+  height: 60px;
+  background: #fef3c7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parent-res-cgpa-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.parent-res-cgpa-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.parent-res-trend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius-full);
+  color: #065f46;
+  font-weight: 600;
+}
+
+.parent-res-sem-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 0;
+  background: var(--neutral-50);
+}
+
+.parent-res-sem-tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.parent-res-sem-tab:hover {
+  background: #fff;
+  color: var(--primary-600);
+}
+
+.parent-res-sem-tab.active {
+  background: #fff;
+  border-bottom-color: var(--primary-500);
+  color: var(--primary-600);
+  font-weight: 600;
+}
+
+.parent-res-sem-sgpa {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.parent-res-table-wrapper {
+  overflow-x: auto;
+}
+
+.parent-res-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.parent-res-table th {
+  padding: 12px 16px;
+  background: var(--neutral-50);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.parent-res-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.parent-res-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .parent-res-overview-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

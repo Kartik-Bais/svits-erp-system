@@ -1,0 +1,101 @@
+import { useState } from 'react'
+import { useAuth } from '../../contexts/AuthContext'
+import { MdEdit, MdSave, MdClose, MdEmail, MdPhone, MdLocationOn, MdAdminPanelSettings } from 'react-icons/md'
+import toast from 'react-hot-toast'
+import '../Faculty/FacultyProfilePage.css' // Reusing the identical CSS
+
+const PERSONAL_FIELDS = [
+  { key: 'name',        label: 'Full Name',      icon: MdEdit,        type: 'text' },
+  { key: 'email',       label: 'Email',          icon: MdEmail,       type: 'email' },
+]
+
+export default function AdminProfile() {
+  const { user } = useAuth()
+  const [editing, setEditing] = useState(false)
+  const [form, setForm] = useState({ ...user })
+
+  const initials = user?.name ? user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'AD'
+
+  const handleSave = () => {
+    toast.success('Admin Profile updated successfully! ')
+    setEditing(false)
+  }
+
+  const handleCancel = () => {
+    setForm({ ...user })
+    setEditing(false)
+  }
+
+  return (
+    <div className="fac-profile-page animate-fade-in" id="admin-profile-page">
+      <div className="fac-profile-banner animate-fade-in">
+        <div className="fac-profile-banner-bg" style={{ background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }} />
+        <div className="fac-profile-banner-content">
+          <div className="fac-profile-avatar-wrap">
+            <div className="fac-profile-avatar avatar-placeholder" style={{ background: 'var(--gradient-primary)', fontSize: '2rem' }}>
+              {initials}
+            </div>
+            <div className="fac-profile-avatar-badge">️</div>
+          </div>
+          <div className="fac-profile-banner-info">
+            <h1 className="fac-profile-name">{user?.name || 'System Admin'}</h1>
+            <p className="fac-profile-meta">Super Administrator</p>
+          </div>
+          <div className="fac-profile-actions">
+            {!editing ? (
+              <button className="btn btn-primary" onClick={() => setEditing(true)}>
+                <MdEdit size={17} /> Edit Profile
+              </button>
+            ) : (
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button className="btn btn-success" onClick={handleSave}>
+                  <MdSave size={17} /> Save
+                </button>
+                <button className="btn btn-secondary" onClick={handleCancel}>
+                  <MdClose size={17} /> Cancel
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="card animate-fade-in delay-1">
+        <div className="card-header">
+          <h2 className="section-title">Security & Account Details</h2>
+        </div>
+        <div className="card-body">
+          <div className="fac-profile-fields-grid">
+            {PERSONAL_FIELDS.map(field => (
+              <div key={field.key} className="form-group">
+                <label className="form-label">
+                  <field.icon size={14} style={{ verticalAlign: 'middle', marginRight: 4 }} />
+                  {field.label}
+                </label>
+                {editing ? (
+                  <input
+                    type={field.type}
+                    className="form-input"
+                    value={form[field.key] || ''}
+                    onChange={e => setForm(f => ({ ...f, [field.key]: e.target.value }))}
+                  />
+                ) : (
+                  <div className="fac-profile-field-value">{user?.[field.key] || '—'}</div>
+                )}
+              </div>
+            ))}
+            <div className="form-group">
+              <label className="form-label">
+                <MdAdminPanelSettings size={14} style={{ verticalAlign: 'middle', marginRight: 4 }} />
+                Role Access Level
+              </label>
+              <div className="fac-profile-field-value" style={{ fontWeight: 600, color: 'var(--accent-red)' }}>
+                Level 1 (Root Access)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,145 @@
+.student-transport-page { padding-bottom: 32px; }
+
+.transport-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+.transport-pass-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.transport-pass-card.active {
+  background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+}
+
+.transport-pass-card.expired {
+  background: linear-gradient(135deg, #64748b 0%, #334155 100%);
+}
+
+.transport-pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.2);
+}
+
+.transport-pass-header h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.transport-pass-body {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.transport-pass-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transport-pass-row span {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.transport-pass-row strong {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.transport-pass-status {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(255,255,255,0.3);
+  font-weight: 600;
+}
+
+.transport-tracking-map {
+  width: 100%;
+  height: 300px;
+  background: var(--neutral-100);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.transport-map-placeholder {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-secondary);
+}
+
+.transport-bus-marker {
+  padding: 8px 16px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-top: 16px;
+  border: 1px solid var(--primary-200);
+}
+
+.transport-route-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.transport-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--neutral-50);
+  border-radius: var(--radius-md);
+}
+
+.transport-detail-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-100);
+  color: var(--primary-600);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transport-detail-item small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.transport-detail-item p {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+  .transport-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .transport-route-details { grid-template-columns: 1fr; }
+}

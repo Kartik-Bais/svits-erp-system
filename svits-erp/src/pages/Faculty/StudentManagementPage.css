@@ -1,0 +1,170 @@
+.fac-student-mgt-page { padding-bottom: 32px; }
+
+.fac-student-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+}
+
+.fac-search-box {
+  display: flex;
+  align-items: center;
+  background: var(--neutral-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.fac-search-icon {
+  color: var(--text-muted);
+  margin-right: 8px;
+}
+
+.fac-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.fac-filter-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--neutral-50);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  color: var(--text-secondary);
+}
+
+.fac-filter-select {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.fac-student-table-wrapper {
+  overflow-x: auto;
+}
+
+.fac-student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fac-student-table th {
+  padding: 12px 20px;
+  text-align: left;
+  background: var(--neutral-50);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.fac-student-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--transition-fast);
+}
+.fac-student-row:hover { background: var(--primary-50); }
+.fac-student-row:last-child { border-bottom: none; }
+
+.fac-student-row td {
+  padding: 14px 20px;
+  vertical-align: middle;
+  font-size: 0.875rem;
+}
+
+.fac-rollno {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--primary-600);
+}
+
+.fac-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fac-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.fac-student-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fac-student-email {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.fac-branch-badge {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.fac-sem-text {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.fac-contact-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.fac-contact-icons a {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.fac-contact-icons a:hover {
+  color: var(--primary-500);
+}
+
+.fac-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.fac-action-btn:hover {
+  background: var(--neutral-100);
+  color: var(--text-primary);
+}

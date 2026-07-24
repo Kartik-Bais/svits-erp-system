@@ -1,0 +1,98 @@
+.parent-fin-page { padding-bottom: 32px; }
+
+.parent-fin-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.parent-fin-stat-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  border-left-width: 5px;
+  border-left-style: solid;
+}
+
+.parent-fin-stat-card.due {
+  border-left-color: var(--accent-red);
+  background: linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+}
+
+.parent-fin-stat-card.paid {
+  border-left-color: var(--accent-green);
+  background: linear-gradient(135deg, #fff 0%, #ecfdf5 100%);
+}
+
+.parent-fin-stat-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-sm);
+}
+
+.parent-fin-stat-card.due .parent-fin-stat-icon {
+  color: var(--accent-red);
+}
+
+.parent-fin-stat-card.paid .parent-fin-stat-icon {
+  color: var(--accent-green);
+}
+
+.parent-fin-stat-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.parent-fin-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.parent-fin-table-wrapper {
+  overflow-x: auto;
+}
+
+.parent-fin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.parent-fin-table th {
+  padding: 16px 20px;
+  text-align: left;
+  background: var(--neutral-50);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.parent-fin-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.parent-fin-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .parent-fin-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

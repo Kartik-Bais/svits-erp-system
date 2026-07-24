@@ -1,0 +1,145 @@
+.student-canteen-page { padding-bottom: 32px; }
+
+.canteen-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.canteen-menu-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.canteen-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.canteen-menu-item:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.canteen-menu-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.veg-indicator {
+  width: 14px;
+  height: 14px;
+  border: 2px solid;
+  border-radius: 2px;
+  position: relative;
+  margin-top: 2px;
+}
+
+.veg-indicator::after {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  border-radius: 50%;
+}
+
+.veg-indicator.veg { border-color: #16a34a; }
+.veg-indicator.veg::after { background: #16a34a; }
+
+.veg-indicator.non-veg { border-color: #dc2626; }
+.veg-indicator.non-veg::after { background: #dc2626; }
+
+.canteen-menu-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.canteen-menu-cat {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.canteen-menu-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.canteen-menu-price {
+  font-weight: 700;
+  color: var(--primary-600);
+}
+
+.canteen-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.canteen-wallet-card {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary-50) 0%, #fff 100%);
+  border-left: 4px solid var(--primary-500);
+}
+
+.canteen-wallet-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--primary-600);
+}
+
+.canteen-wallet-info small {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.canteen-wallet-info h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.canteen-cart-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.canteen-cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+.canteen-cart-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  margin-top: 8px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary-600);
+}
+
+@media (max-width: 900px) {
+  .canteen-grid { grid-template-columns: 1fr; }
+  .canteen-sidebar { flex-direction: column-reverse; }
+}

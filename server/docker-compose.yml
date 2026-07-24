@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  svits-erp-backend:
+    build: .
+    container_name: svits-erp-backend
+    ports:
+      - "5000:5000"
+    # This pulls your MONGO_URI link directly from your .env file!
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    # Waits for Redis to wake up before starting your server
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: svits-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - svits-redis-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  svits-redis-data:

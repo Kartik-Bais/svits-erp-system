@@ -1,0 +1,123 @@
+.student-hostel-page { padding-bottom: 32px; }
+
+.hostel-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--neutral-50);
+  padding: 8px;
+  border-radius: var(--radius-lg);
+  width: fit-content;
+}
+
+.hostel-tab {
+  padding: 10px 24px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hostel-tab:hover {
+  background: #fff;
+  color: var(--primary-600);
+}
+
+.hostel-tab.active {
+  background: #fff;
+  color: var(--primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.hostel-overview-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.hostel-room-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.hostel-room-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--primary-50);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hostel-roomies h4 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.hostel-roomies ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hostel-roomies li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.hostel-mess-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hostel-mess-card {
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--neutral-50);
+}
+
+.hostel-mess-card h4 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.hostel-mess-card h4 span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hostel-mess-card p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .hostel-overview-grid { grid-template-columns: 1fr; }
+  .hostel-mess-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hostel-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+  .hostel-tab { white-space: nowrap; }
+}

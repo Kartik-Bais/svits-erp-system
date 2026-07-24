@@ -1,0 +1,66 @@
+.admin-settings-page { padding-bottom: 32px; }
+
+.admin-settings-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+}
+
+.admin-settings-sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 4px;
+}
+
+.admin-settings-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.admin-settings-nav-btn:hover {
+  background: var(--neutral-50);
+  color: var(--primary-600);
+}
+
+.admin-settings-nav-btn.active {
+  background: var(--primary-50);
+  color: var(--primary-600);
+  font-weight: 600;
+}
+
+.admin-settings-content {
+  padding: 32px;
+}
+
+.admin-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 900px) {
+  .admin-settings-container {
+    grid-template-columns: 1fr;
+  }
+  .admin-settings-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .admin-settings-nav-btn {
+    white-space: nowrap;
+  }
+}
