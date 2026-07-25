@@ -211,7 +211,7 @@ export default function SignupPage() {
                 <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></div>
               </div>
               <a 
-                href="http://localhost:5000/api/v1/auth/google" 
+                href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'}/auth/google`} 
                 className="btn w-full" 
                 style={{ 
                   display: 'flex', 
