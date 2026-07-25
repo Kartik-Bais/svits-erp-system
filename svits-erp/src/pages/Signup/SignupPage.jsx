@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import toast from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc'
+import { GoogleLogin } from '@react-oauth/google'
 import {
   MdEmail, MdLock, MdVisibility, MdVisibilityOff, MdPerson,
   MdArrowBack, MdSchool, MdPeople, MdAdminPanelSettings, MdFamilyRestroom
@@ -17,7 +18,7 @@ const ROLES = [
 ]
 
 export default function SignupPage() {
-  const { signup, loading } = useAuth()
+  const { signup, loading, googleLogin } = useAuth()
   const navigate = useNavigate()
 
   const [selectedRole, setSelectedRole] = useState(null)
@@ -211,23 +212,24 @@ export default function SignupPage() {
                 <span style={{ padding: '0 10px' }}>OR</span>
                 <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></div>
               </div>
-              <a 
-                href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'}/auth/google`} 
-                className="btn w-full" 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  gap: '8px', 
-                  background: '#fff', 
-                  color: '#333', 
-                  border: '1px solid #ccc',
-                  marginBottom: '1rem'
-                }}
-              >
-                <FcGoogle size={20} />
-                Sign up with Google
-              </a>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                <GoogleLogin
+                  onSuccess={async (credentialResponse) => {
+                    const result = await googleLogin(credentialResponse.credential)
+                    if (result.success) {
+                      toast.success('Account verified with Google!')
+                      navigate(`/${selectedRole || 'student'}/dashboard`)
+                    } else {
+                      toast.error(result.error)
+                    }
+                  }}
+                  onError={() => {
+                    toast.error('Google signup failed')
+                  }}
+                  useOneTap
+                  width="100%"
+                />
+              </div>
               Already have an account? <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: '600', textDecoration: 'none' }}>Sign in</Link>
             </div>
 

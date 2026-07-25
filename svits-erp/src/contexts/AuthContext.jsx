@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback } from 'react'
+import axios from 'axios'
 
 const AuthContext = createContext(null)
 
@@ -131,8 +132,36 @@ export function AuthProvider({ children }) {
     })
   }, [])
 
+  const googleLogin = useCallback(async (idToken) => {
+    setLoading(true)
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1'}/auth/google`, { idToken })
+      
+      const { user: backendUser, accessToken } = response.data.data
+      
+      // Store token securely
+      localStorage.setItem('svits-access-token', accessToken)
+      
+      // We will map the backend user to the frontend format for now
+      // Or just save it directly if it matches
+      const userData = {
+        ...backendUser,
+        isFirstLogin: false
+      }
+      
+      setUser(userData)
+      localStorage.setItem('svits-user', JSON.stringify(userData))
+      setLoading(false)
+      return { success: true }
+    } catch (error) {
+      setLoading(false)
+      console.error('Google login failed:', error)
+      return { success: false, error: error.response?.data?.message || 'Google Login Failed' }
+    }
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, markOnboardingDone }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, googleLogin, markOnboardingDone }}>
       {children}
     </AuthContext.Provider>
   )
