@@ -10,7 +10,12 @@ const redisOptions = {
 
 let connection
 try {
-  connection = new Redis(redisOptions)
+  // Use REDIS_URL if provided (common for Upstash/Render), otherwise fallback to host/port
+  if (process.env.REDIS_URL) {
+    connection = new Redis(process.env.REDIS_URL, { maxRetriesPerRequest: null })
+  } else {
+    connection = new Redis(redisOptions)
+  }
   
   connection.on('error', (err) => {
     logger.warn('Redis connection failed. Background jobs will be unavailable.', { error: err.message })
