@@ -11,4 +11,7 @@ module.exports = {
     '/src/config/',
   ],
   testTimeout: 30000,
+  moduleNameMapper: {
+    'pdf-parse': '<rootDir>/tests/__mocks__/pdf-parse.js',
+  },
 }

@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
         mongodb-version: ['6.0']
         redis-version: [7]
 
@@ -45,14 +45,16 @@ jobs:
         redis-version: ${{ matrix.redis-version }}
 
     - name: Install dependencies
-      run: npm ci
+      run: npm ci --legacy-peer-deps
 
     - name: Run Tests
       run: npm test
       env:
         NODE_ENV: test
-        JWT_SECRET: test_secret_key_for_ci
-        JWT_EXPIRES_IN: 1d
+        JWT_ACCESS_SECRET: test_access_secret_for_ci
+        JWT_REFRESH_SECRET: test_refresh_secret_for_ci
+        JWT_ACCESS_EXPIRES: 15m
+        JWT_REFRESH_EXPIRES: 7d
 
     - name: Build Docker Image
       run: docker build -t svits-erp-backend:latest .

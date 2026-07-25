@@ -1,23 +1,25 @@
 # Stage 1: Build & Install dependencies
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 # Install all dependencies (including dev) for building if necessary
-RUN npm install
+# --legacy-peer-deps is required because multer-storage-cloudinary@4 has a
+# peer dep on cloudinary@^1, while the project uses cloudinary@^2
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
 # Stage 2: Production Image
-FROM node:18-alpine
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
 # Copy package files and install only production dependencies
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev --legacy-peer-deps
 
 # Copy source code from builder
 COPY --from=builder /usr/src/app/src ./src

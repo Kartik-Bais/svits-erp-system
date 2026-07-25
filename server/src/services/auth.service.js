@@ -1,11 +1,11 @@
 const { OAuth2Client } = require('google-auth-library')
-const User    = require('../models/User.model')
+const User = require('../models/User.model')
 const ApiError = require('../utils/ApiError')
 const { generateSecureToken, hashToken } = require('../utils/crypto.util')
 const { sendVerificationEmail, sendPasswordResetEmail } = require('./email.service')
 const { HTTP_STATUS } = require('../constants/status')
-const { MESSAGES }    = require('../constants/messages')
-const { ROLES }       = require('../constants/roles')
+const { MESSAGES } = require('../constants/messages')
+const { ROLES } = require('../constants/roles')
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
@@ -35,16 +35,16 @@ const register = async ({ name, email, password, role }) => {
 
 const verifyEmail = async (rawToken) => {
   const hashed = hashToken(rawToken)
-  const user   = await User.findOne({
+  const user = await User.findOne({
     emailVerificationTokenHash: hashed,
     emailVerificationExpiresAt: { $gt: new Date() },
   })
 
   if (!user) throw new ApiError(HTTP_STATUS.BAD_REQUEST, MESSAGES.INVALID_TOKEN)
 
-  user.isEmailVerified              = true
-  user.emailVerificationTokenHash   = undefined
-  user.emailVerificationExpiresAt   = undefined
+  user.isEmailVerified = true
+  user.emailVerificationTokenHash = undefined
+  user.emailVerificationExpiresAt = undefined
   await user.save()
 
   return user
@@ -91,7 +91,7 @@ const loginWithGoogle = async (idToken) => {
   if (user) {
     // Link Google account if not already linked
     if (!user.googleId) {
-      user.googleId        = googleId
+      user.googleId = googleId
       user.isEmailVerified = true
       if (!user.avatar) user.avatar = picture
       await user.save({ validateBeforeSave: false })
@@ -101,9 +101,9 @@ const loginWithGoogle = async (idToken) => {
       name,
       email,
       googleId,
-      avatar:          picture,
+      avatar: picture,
       isEmailVerified: true,
-      role:            ROLES.STUDENT,
+      role: ROLES.STUDENT,
     })
   }
 
@@ -136,14 +136,14 @@ const forgotPassword = async (email) => {
 
 const resetPassword = async (rawToken, newPassword) => {
   const hashed = hashToken(rawToken)
-  const user   = await User.findOne({
+  const user = await User.findOne({
     passwordResetTokenHash: hashed,
     passwordResetExpiresAt: { $gt: new Date() },
   })
 
   if (!user) throw new ApiError(HTTP_STATUS.BAD_REQUEST, MESSAGES.INVALID_TOKEN)
 
-  user.password               = newPassword
+  user.password = newPassword
   user.passwordResetTokenHash = undefined
   user.passwordResetExpiresAt = undefined
   await user.save()

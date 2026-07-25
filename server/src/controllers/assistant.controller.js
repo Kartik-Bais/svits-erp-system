@@ -5,27 +5,7 @@ const { HTTP_STATUS } = require('../constants/status')
 const AssistantConversation = require('../models/AssistantConversation.model')
 const { generateResponse, generateChatResponse } = require('../utils/campusAssistant/gemini.service')
 const { formatAssistantResponse, parseJsonFromResponse } = require('../utils/campusAssistant/responseFormatter')
-const pdfParse = require('pdf-parse')
-
-// Helper function to fetch and parse a document if passed a URL (simplified for text-based processing)
-const extractTextFromUrl = async (url) => {
-  try {
-    const response = await fetch(url)
-    const arrayBuffer = await response.arrayBuffer()
-    const buffer = Buffer.from(arrayBuffer)
-    
-    // Attempt PDF parsing if it's a PDF
-    if (url.toLowerCase().endsWith('.pdf') || response.headers.get('content-type') === 'application/pdf') {
-      const data = await pdfParse(buffer)
-      return data.text
-    }
-    
-    // Otherwise fallback to basic text
-    return buffer.toString('utf-8')
-  } catch (error) {
-    return 'Unable to extract text from the provided URL.'
-  }
-}
+const { extractTextFromUrl } = require('../services/pdf.service')
 
 const chat = asyncHandler(async (req, res) => {
   const { message } = req.body
