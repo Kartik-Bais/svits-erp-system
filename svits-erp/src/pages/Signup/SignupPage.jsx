@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import toast from 'react-hot-toast'
+import { FcGoogle } from 'react-icons/fc'
 import {
   MdEmail, MdLock, MdVisibility, MdVisibilityOff, MdPerson,
   MdArrowBack, MdSchool, MdPeople, MdAdminPanelSettings, MdFamilyRestroom
@@ -224,7 +225,7 @@ export default function SignupPage() {
                   marginBottom: '1rem'
                 }}
               >
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" style={{ width: 18, height: 18 }} />
+                <FcGoogle size={20} />
                 Sign up with Google
               </a>
               Already have an account? <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: '600', textDecoration: 'none' }}>Sign in</Link>
