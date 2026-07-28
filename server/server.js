@@ -1,4 +1,5 @@
 require('dotenv').config()
+require('./src/config/passport') // Initialize Passport + Google Strategy
 const app = require('./src/app')
 const connectDB = require('./src/config/db')
 const logger = require('./src/config/logger')
@@ -22,7 +23,7 @@ connectDB().then(() => {
       // Close Queues
       const { closeQueues } = require('./src/config/queue')
       await closeQueues()
-      
+
       // Close Mongoose connection
       const mongoose = require('mongoose')
       await mongoose.connection.close(false)
@@ -32,7 +33,7 @@ connectDB().then(() => {
   }
 
   process.on('SIGTERM', () => shutdown('SIGTERM'))
-  process.on('SIGINT',  () => shutdown('SIGINT'))
+  process.on('SIGINT', () => shutdown('SIGINT'))
 }).catch((err) => {
   logger.error('Failed to connect to database', { error: err.message })
   process.exit(1)

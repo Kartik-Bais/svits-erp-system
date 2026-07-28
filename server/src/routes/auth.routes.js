@@ -1,23 +1,58 @@
-const router       = require('express').Router()
-const authCtrl     = require('../controllers/auth.controller')
-const { validate } = require('../middleware/validate.middleware')
-const { authenticate } = require('../middleware/auth.middleware')
-const { authLimiter }  = require('../middleware/rateLimiter.middleware')
-const schemas          = require('../validators/auth.validator')
+const router   = require('express').Router()
+const passport = require('passport')
+const jwt      = require('jsonwebtoken')
 
-// Public — rate-limited
-router.post('/register',         authLimiter, validate(schemas.register),        authCtrl.register)
-router.post('/verify-email',     authLimiter, validate(schemas.verifyEmail),      authCtrl.verifyEmail)
-router.post('/login',            authLimiter, validate(schemas.login),            authCtrl.login)
-router.post('/google',           authLimiter, validate(schemas.googleLogin),      authCtrl.googleLogin)
-router.post('/forgot-password',  authLimiter, validate(schemas.forgotPassword),   authCtrl.forgotPassword)
-router.post('/reset-password',   authLimiter, validate(schemas.resetPassword),    authCtrl.resetPassword)
+const authCtrl          = require('../controllers/auth.controller')
+const { validate }      = require('../middleware/validate.middleware')
+const { authenticate }  = require('../middleware/auth.middleware')
+const { authLimiter }   = require('../middleware/rateLimiter.middleware')
+const schemas           = require('../validators/auth.validator')
 
-// Public — token rotation (cookie-based)
+// ── Public — rate-limited ─────────────────────────────────────────────────────
+router.post('/register',        authLimiter, validate(schemas.register),       authCtrl.register)
+router.post('/verify-email',    authLimiter, validate(schemas.verifyEmail),    authCtrl.verifyEmail)
+router.post('/login',           authLimiter, validate(schemas.login),          authCtrl.login)
+router.post('/google',          authLimiter, validate(schemas.googleLogin),    authCtrl.googleLogin)
+router.post('/forgot-password', authLimiter, validate(schemas.forgotPassword), authCtrl.forgotPassword)
+router.post('/reset-password',  authLimiter, validate(schemas.resetPassword),  authCtrl.resetPassword)
+
+// ── Public — token rotation (cookie-based) ────────────────────────────────────
 router.post('/refresh', authCtrl.refresh)
 
-// Protected
+// ── Protected ─────────────────────────────────────────────────────────────────
 router.post('/logout',          authenticate, authCtrl.logout)
 router.post('/change-password', authenticate, validate(schemas.changePassword), authCtrl.changePassword)
+
+// ── Google OAuth ──────────────────────────────────────────────────────────────
+// Step 1: Redirect user to Google's consent screen
+router.get('/google/redirect', passport.authenticate('google', { scope: ['email', 'profile'] }))
+
+// Step 2: Google redirects back here with a code
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { session: false, failureRedirect: `${process.env.CLIENT_URL}/login?error=google_failed` }),
+  (req, res) => {
+    try {
+      const token = jwt.sign(
+        {
+          id:    req.user._id,
+          email: req.user.email,
+          role:  req.user.role,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: '7d' }
+      )
+      res.redirect(`${process.env.CLIENT_URL}/auth-success?token=${token}`)
+    } catch (error) {
+      console.error('Google login callback error:', error)
+      res.redirect(`${process.env.CLIENT_URL}/login?error=google_failed`)
+    }
+  }
+)
+
+// ── Get current logged-in user (token-based) ──────────────────────────────────
+router.get('/me', authenticate, (req, res) => {
+  res.json({ success: true, user: req.user })
+})
 
 module.exports = router
