@@ -19,10 +19,8 @@ passport.use(
           user = await User.findOne({ email: profile.emails[0].value })
 
           if (user) {
-            // Link google account to existing user
-            user.googleId = profile.id
-            if (!user.avatar) user.avatar = profile.photos[0]?.value || null
-            await user.save()
+            // Do not link automatically. Tell user to sign in with password.
+            return cb(new Error('email_exists'), null)
           } else {
             // Create a brand new user
             user = await User.create({
