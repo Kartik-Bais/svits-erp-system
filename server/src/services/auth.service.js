@@ -12,8 +12,14 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 // ── Registration ──────────────────────────────────────────────
 
 const register = async ({ name, email, password, role }) => {
-  const exists = await User.findOne({ email })
-  if (exists) throw new ApiError(HTTP_STATUS.CONFLICT, MESSAGES.EMAIL_ALREADY_EXISTS)
+  const exists = await User.findOne({ email }).select('+password +googleId')
+  if (exists) {
+    if (exists.googleId && !exists.password) {
+      throw new ApiError(HTTP_STATUS.CONFLICT, 'This email is registered with Google. Please sign in with Google.')
+    } else {
+      throw new ApiError(HTTP_STATUS.CONFLICT, 'An account with this email already exists. Please sign in with your password.')
+    }
+  }
 
   const { raw, hashed } = generateSecureToken()
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 h
@@ -89,12 +95,9 @@ const loginWithGoogle = async (idToken) => {
   let user = await User.findOne({ email })
 
   if (user) {
-    // Link Google account if not already linked
+    // If user exists but wasn't created via Google, reject auto-linking
     if (!user.googleId) {
-      user.googleId = googleId
-      user.isEmailVerified = true
-      if (!user.avatar) user.avatar = picture
-      await user.save({ validateBeforeSave: false })
+      throw new ApiError(HTTP_STATUS.CONFLICT, 'An account with this email already exists. Please sign in with your password.')
     }
   } else {
     user = await User.create({
