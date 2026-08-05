@@ -18,7 +18,7 @@
   align-items: center;
   padding: 16px;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   transition: all var(--transition-fast);
 }
 
@@ -37,7 +37,7 @@
   width: 14px;
   height: 14px;
   border: 2px solid;
-  border-radius: 2px;
+  border-radius: 0;
   position: relative;
   margin-top: 2px;
 }
@@ -46,7 +46,7 @@
   content: '';
   position: absolute;
   top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border-radius: 50%;
+  border-radius: 0;
 }
 
 .veg-indicator.veg { border-color: #16a34a; }

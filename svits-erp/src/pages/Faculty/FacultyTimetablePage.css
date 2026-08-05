@@ -47,7 +47,7 @@
   border: 1px solid var(--border-color);
   border-left-width: 5px;
   border-left-style: solid;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   padding: 20px;
   box-shadow: var(--shadow-sm);
   transition: box-shadow var(--transition-fast), transform var(--transition-fast);

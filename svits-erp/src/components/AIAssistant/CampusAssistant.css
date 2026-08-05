@@ -12,7 +12,7 @@
 .ca-fab {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--primary-500);
   color: #fff;
   border: none;
@@ -39,7 +39,7 @@
   width: 330px;
   height: 440px;
   background: var(--bg-card);
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
   border: 1px solid var(--border-color);
   display: flex;
@@ -92,7 +92,7 @@
 .ca-bubble {
   max-width: 82%;
   padding: 9px 13px;
-  border-radius: 14px;
+  border-radius: 0;
   font-size: 0.875rem;
   line-height: 1.45;
 }
@@ -101,7 +101,7 @@
   background: var(--bg-card);
   color: var(--text-primary);
   align-self: flex-start;
-  border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 0;
   border: 1px solid var(--border-color);
 }
 
@@ -109,7 +109,7 @@
   background: var(--primary-500);
   color: #fff;
   align-self: flex-end;
-  border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 0;
 }
 
 .ca-typing {
@@ -122,7 +122,7 @@
 .ca-typing span {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--text-muted);
   animation: ca-blink 1.2s infinite both;
 }
@@ -146,7 +146,7 @@
 .ca-input-row input {
   flex: 1;
   border: 1px solid var(--border-color);
-  border-radius: 20px;
+  border-radius: 0;
   padding: 7px 14px;
   font-size: 0.875rem;
   outline: none;
@@ -162,7 +162,7 @@
 .ca-input-row button {
   width: 34px;
   height: 34px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--primary-500);
   color: #fff;
   border: none;

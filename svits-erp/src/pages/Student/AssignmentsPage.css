@@ -2,14 +2,14 @@
 
 /* Controls */
 .asgn-controls { display: flex; align-items: center; gap: 12px; }
-.asgn-view-toggle { display: flex; background: var(--neutral-100); border-radius: var(--radius-md); padding: 4px; gap: 2px; }
+.asgn-view-toggle { display: flex; background: var(--neutral-100); border-radius: 0; padding: 4px; gap: 2px; }
 
 /* Filter tabs */
 .asgn-filter-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
 .asgn-filter-tab {
   display: flex; align-items: center; gap: 6px;
   padding: 8px 16px;
-  border-radius: var(--radius-full);
+  border-radius: 0;
   border: 1.5px solid var(--border-color);
   background: var(--bg-card);
   cursor: pointer;
@@ -31,7 +31,7 @@
 
 .asgn-card {
   background: var(--bg-card);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-color);
   overflow: hidden;
@@ -66,7 +66,7 @@
   padding: 3px 10px;
   background: var(--primary-50);
   border: 1px solid var(--primary-200);
-  border-radius: var(--radius-full);
+  border-radius: 0;
   font-size: 0.75rem;
   color: var(--primary-700);
 }
@@ -84,7 +84,7 @@
 
 .kanban-col {
   background: var(--neutral-50);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 1px solid var(--border-color);
   min-height: 300px;
   display: flex;
@@ -98,7 +98,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 16px 12px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: 0 var(--radius-lg) 0 0;
 }
 .kanban-col-title { font-weight: 700; font-size: 0.875rem; font-family: var(--font-heading); }
 .kanban-col-count {
@@ -114,7 +114,7 @@
 
 .kanban-card {
   background: var(--bg-card);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   padding: 10px 12px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-color);
@@ -145,7 +145,7 @@
   display: flex; align-items: center; gap: 6px;
   margin: 8px 12px 12px;
   padding: 8px;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   border: 1.5px dashed var(--border-color);
   background: transparent;
   cursor: pointer;
@@ -172,7 +172,7 @@
 }
 .modal-card {
   background: var(--bg-card);
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   box-shadow: var(--shadow-xl);
   width: 100%;
   max-width: 480px;
@@ -186,7 +186,7 @@
 .modal-header h3 { font-weight: 700; font-size: 1.0625rem; font-family: var(--font-heading); }
 .modal-close {
   width: 32px; height: 32px;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--neutral-100);
   border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -198,7 +198,7 @@
 
 .upload-drop-zone {
   border: 2px dashed var(--primary-300);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: 40px 20px;
   text-align: center;
   background: var(--primary-50);

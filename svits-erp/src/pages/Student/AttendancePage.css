@@ -4,7 +4,7 @@
 .overall-chip {
   display: flex; align-items: center; gap: 8px;
   padding: 10px 18px;
-  border-radius: var(--radius-full);
+  border-radius: 0;
   font-weight: 600; font-size: 0.9375rem;
   box-shadow: var(--shadow-sm);
 }
@@ -55,7 +55,7 @@
 .at-row:last-child { border-bottom: none; }
 .at-row td { padding: 14px 16px; vertical-align: middle; }
 
-.at-subject-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.at-subject-dot { width: 10px; height: 10px; border-radius: 0; flex-shrink: 0; }
 
 .at-pct-cell { display: flex; align-items: center; gap: 8px; }
 .at-mini-bar { flex: 1; height: 6px; background: var(--neutral-100); border-radius: 99px; overflow: hidden; }
@@ -65,7 +65,7 @@
   margin: 0 24px 24px;
   padding: 20px;
   background: var(--neutral-50);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 1px solid var(--border-color);
 }
 .at-detail-panel h3 { font-size: 1rem; font-weight: 700; font-family: var(--font-heading); }
@@ -79,7 +79,7 @@
 }
 .at-cal-day {
   width: 32px; height: 32px;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   display: flex; align-items: center; justify-content: center;
   font-size: 0.78rem;
   font-weight: 600;
@@ -92,7 +92,7 @@
 .at-cal-legend { display: flex; gap: 16px; flex-wrap: wrap; }
 .at-cal-dot {
   width: 10px; height: 10px;
-  border-radius: 50%; display: inline-block; margin-right: 4px;
+  border-radius: 0; display: inline-block; margin-right: 4px;
 }
 .at-cal-dot.at-cal-present { background: #10b981; }
 .at-cal-dot.at-cal-absent  { background: #ef4444; }

@@ -21,7 +21,7 @@
 
 .fac-announce-dot {
   width: 9px; height: 9px;
-  border-radius: 50%;
+  border-radius: 0;
   flex-shrink: 0;
   margin-top: 5px;
 }

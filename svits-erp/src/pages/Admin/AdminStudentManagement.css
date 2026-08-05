@@ -22,7 +22,7 @@
   background: var(--neutral-50);
   border: 1px solid var(--border-color);
   padding: 8px 16px;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   flex: 1;
   max-width: 400px;
   transition: border-color var(--transition-fast);
@@ -49,7 +49,7 @@
   background: var(--neutral-50);
   border: 1px solid var(--border-color);
   padding: 8px 16px;
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 .admin-filter-box select {
@@ -106,7 +106,7 @@
   border: none;
   width: 32px;
   height: 32px;
-  border-radius: 6px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;

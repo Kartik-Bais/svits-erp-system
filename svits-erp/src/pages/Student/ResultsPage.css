@@ -5,7 +5,7 @@
   padding: 10px 20px;
   background: linear-gradient(135deg, #fef3c7, #fde68a);
   border: 1px solid #fcd34d;
-  border-radius: var(--radius-full);
+  border-radius: 0;
   font-size: 0.9375rem;
   color: #92400e;
   box-shadow: 0 4px 14px rgba(245,158,11,0.2);
@@ -39,7 +39,7 @@
   align-items: center;
   gap: 4px;
   padding: 8px 16px;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   border: 1.5px solid var(--border-color);
   background: var(--bg-card);
   cursor: pointer;

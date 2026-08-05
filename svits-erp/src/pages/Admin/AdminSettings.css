@@ -20,7 +20,7 @@
   padding: 14px 20px;
   background: transparent;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   color: var(--text-secondary);
   font-size: 0.9375rem;
   font-weight: 500;
